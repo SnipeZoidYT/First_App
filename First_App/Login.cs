@@ -15,17 +15,42 @@ namespace First_App
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            string name = "Christopher";
-            string password = "Secure123";
+            using (SqlConnection  cn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Code\C#\App\First_App\First_App\Database.mdf;Integrated Security=True"))
+            {
+                cn.Open();
 
-            if (textBox1.Text != name || textBox2.Text != password)
-            {
-                MessageBox.Show("Incorrect username or password.");
+                string name =  textName.Text;
+                string password =  textPassword.Text;
+
+                string query = "SELECT * FROM Users ";
+
+                using (SqlCommand cmd = new SqlCommand(query, cn))
+                {
+                    cmd.Parameters.AddWithValue("@name", name);
+                    cmd.Parameters.AddWithValue("@password", password);
+
+
+                    int result = (int)cmd.ExecuteScalar();
+
+                    if (result > 0)
+                    {
+                        MessageBox.Show("Login Successful", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        string loggedInName = textName.Text;    
+
+                        this.Hide();
+                        Home home = new Home(loggedInName);
+                        home.ShowDialog();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Invalid username or password!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+
+
+                }
             }
-            else
-            {
-                MessageBox.Show("Logged in!");
-            }
+
 
 
         }
@@ -56,8 +81,15 @@ namespace First_App
 
         private void Login_Load(object sender, EventArgs e)
         {
-            cn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Code\C#\App\First_App\First_App\Database.mdf;Integrated Security=True");
-            cn.Open();
+            try
+            {
+                cn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Code\C#\App\First_App\First_App\Database.mdf;Integrated Security=True");
+                cn.Open();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Failed to connect to database: " + ex.Message);
+            }
         }
     }
 }

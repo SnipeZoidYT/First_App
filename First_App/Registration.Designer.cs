@@ -73,6 +73,7 @@
             textName.Name = "textName";
             textName.Size = new Size(160, 23);
             textName.TabIndex = 3;
+            textName.TextChanged += textName_TextChanged;
             // 
             // textPassword
             // 

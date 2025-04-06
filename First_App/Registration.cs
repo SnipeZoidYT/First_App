@@ -41,36 +41,44 @@ namespace First_App
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (textPassword.Text != string.Empty || textName.Text != string.Empty)
+            if (!string.IsNullOrEmpty(textPassword.Text) && !string.IsNullOrEmpty(textName.Text))
             {
-                
-                SqlCommand cmd = new SqlCommand("select * from [Table] name", cn);
-                cmd.Parameters.AddWithValue("@name", textName.Text);
-
-                SqlDataReader dr = cmd.ExecuteReader();
-
-                if (dr.Read())
+                try
                 {
-                    dr.Close();
-                    MessageBox.Show("Name Already exists please try another", "Error",
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM Users WHERE name=@name", cn);
+                    cmd.Parameters.AddWithValue("@name", textName.Text);
+
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        if (dr.HasRows)
+                        {
+                            MessageBox.Show("Name already exists. Please try another.", "Error",
+                                           MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                    }
+
+                    using (SqlCommand insertCmd = new SqlCommand("INSERT INTO Users (name, password) VALUES (@name, @password)", cn))
+                    {
+                        insertCmd.Parameters.AddWithValue("@name", textName.Text);
+                        insertCmd.Parameters.AddWithValue("@password", textPassword.Text);
+                        insertCmd.ExecuteNonQuery();
+
+                        MessageBox.Show("Your account has been created. Please login now.", "Success",
+                                       MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"An error occurred: {ex.Message}", "Error",
                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                else
-                {
-                    dr.Close();
-                    cmd = new SqlCommand("insert into [Table] values(@name,@password)", cn);
-                    cmd.Parameters.AddWithValue("@name", textName.Text);
-                    cmd.Parameters.AddWithValue("@password", textPassword.Text);
-                    cmd.ExecuteNonQuery();
-                    MessageBox.Show("Your Account is created. Please login now.", "Done",
-                                   MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-            else
-            {
-                MessageBox.Show("Please enter value in all field.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-    
+
+        private void textName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             label1 = new Label();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
+            textName = new TextBox();
+            textPassword = new TextBox();
             button1 = new Button();
             label2 = new Label();
             label3 = new Label();
@@ -48,21 +48,22 @@
             label1.Text = "LOGIN";
             label1.Click += label1_Click;
             // 
-            // textBox1
+            // textName
             // 
-            textBox1.Location = new Point(237, 168);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(180, 23);
-            textBox1.TabIndex = 2;
-            textBox1.TextChanged += textBox1_TextChanged_1;
+            textName.Location = new Point(237, 168);
+            textName.Name = "textName";
+            textName.Size = new Size(180, 23);
+            textName.TabIndex = 2;
+            textName.TextChanged += textBox1_TextChanged_1;
             // 
-            // textBox2
+            // textPassword
             // 
-            textBox2.Location = new Point(237, 245);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(180, 23);
-            textBox2.TabIndex = 3;
-            textBox2.TextChanged += textBox2_TextChanged;
+            textPassword.Location = new Point(237, 245);
+            textPassword.Name = "textPassword";
+            textPassword.PasswordChar = '*';
+            textPassword.Size = new Size(180, 23);
+            textPassword.TabIndex = 3;
+            textPassword.TextChanged += textBox2_TextChanged;
             // 
             // button1
             // 
@@ -113,9 +114,10 @@
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(button1);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
+            Controls.Add(textPassword);
+            Controls.Add(textName);
             Controls.Add(label1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "Login";
             Text = "App";
             Load += Login_Load;
@@ -125,8 +127,8 @@
 
         #endregion
         private Label label1;
-        private TextBox textBox1;
-        private TextBox textBox2;
+        private TextBox textName;
+        private TextBox textPassword;
         private Button button1;
         private Label label2;
         private Label label3;
