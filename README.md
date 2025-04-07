@@ -39,6 +39,7 @@ Copy
 git clone https://github.com/SnipeZoidYT/First_App.git
 cd First_App
 Open the solution in Visual Studio 🖥️
+```
 
 Restore NuGet packages if needed 📦
 
@@ -73,6 +74,6 @@ Area	Improvement Needed
 MIT License - Free to use, modify, and distribute! 🎉
 
 <div align="center">
-Made with ❤️ by [YourName] | Give it a ⭐ if you like it!
+Made with ❤️ by Christopher | Give it a ⭐ if you like it!
 
 </div>
