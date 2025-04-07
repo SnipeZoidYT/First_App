@@ -15,29 +15,27 @@ namespace First_App
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            using (SqlConnection  cn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Code\C#\App\First_App\First_App\Database.mdf;Integrated Security=True"))
+            using (SqlConnection cn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Code\C#\App\First_App\First_App\Database.mdf;Integrated Security=True"))
             {
                 cn.Open();
 
-                string name =  textName.Text;
-                string password =  textPassword.Text;
+                string name = textName.Text;
+                string password = textPassword.Text;
 
-                string query = "SELECT * FROM Users ";
+                
+                string query = "SELECT COUNT(*) FROM Users WHERE Name = @name AND Password = @password";
 
                 using (SqlCommand cmd = new SqlCommand(query, cn))
                 {
                     cmd.Parameters.AddWithValue("@name", name);
                     cmd.Parameters.AddWithValue("@password", password);
 
-
                     int result = (int)cmd.ExecuteScalar();
 
                     if (result > 0)
                     {
                         MessageBox.Show("Login Successful", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                        string loggedInName = textName.Text;    
-
+                        string loggedInName = textName.Text;
                         this.Hide();
                         Home home = new Home(loggedInName);
                         home.ShowDialog();
@@ -46,13 +44,8 @@ namespace First_App
                     {
                         MessageBox.Show("Invalid username or password!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
-
-
                 }
             }
-
-
-
         }
 
         private void button2_Click(object sender, EventArgs e)

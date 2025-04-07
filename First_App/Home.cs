@@ -14,10 +14,12 @@ namespace First_App
 
     public partial class Home : Form
     {
-        public string loggedInName { get; set; }
+        
         public Home(string loggedInName)
         {
             InitializeComponent();
+            this.label2.Text = $"Logged in as: {loggedInName}";
+            this.label2.Location = new Point(10, 10);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -48,10 +50,7 @@ namespace First_App
 
         private void toolStripLabel1_Load(object  sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(loggedInName))
-            {
-                toolStripLabel1.Text = $"Logged in as: {loggedInName}";
-            }
+          
         }
     }
 }

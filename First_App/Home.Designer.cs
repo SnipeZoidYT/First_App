@@ -30,9 +30,10 @@
         {
             label1 = new Label();
             button1 = new Button();
-            toolStrip1 = new ToolStrip();
-            toolStripLabel1 = new ToolStripLabel();
-            toolStrip1.SuspendLayout();
+            label2 = new Label();
+            button2 = new Button();
+            button3 = new Button();
+            button4 = new Button();
             SuspendLayout();
             // 
             // label1
@@ -57,34 +58,56 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
-            // toolStrip1
+            // label2
             // 
-            toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripLabel1 });
-            toolStrip1.Location = new Point(0, 0);
-            toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(800, 25);
-            toolStrip1.TabIndex = 2;
-            toolStrip1.Text = "toolStrip1";
-            toolStrip1.ItemClicked += toolStrip1_ItemClicked;
+            label2.AutoSize = true;
+            label2.Location = new Point(12, 9);
+            label2.Name = "label2";
+            label2.Size = new Size(37, 15);
+            label2.TabIndex = 2;
+            label2.Text = "name";
             // 
-            // toolStripLabel1
+            // button2
             // 
-            toolStripLabel1.Name = "toolStripLabel1";
-            toolStripLabel1.Size = new Size(0, 22);
-            toolStripLabel1.Click += toolStripLabel1_Click;
+            button2.Location = new Point(323, 142);
+            button2.Name = "button2";
+            button2.Size = new Size(137, 35);
+            button2.TabIndex = 3;
+            button2.Text = "Deposit";
+            button2.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            button3.Location = new Point(323, 219);
+            button3.Name = "button3";
+            button3.Size = new Size(137, 35);
+            button3.TabIndex = 4;
+            button3.Text = "Withdraw";
+            button3.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            button4.Location = new Point(323, 292);
+            button4.Name = "button4";
+            button4.Size = new Size(137, 35);
+            button4.TabIndex = 5;
+            button4.Text = "View Account";
+            button4.UseVisualStyleBackColor = true;
             // 
             // Home
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(toolStrip1);
+            Controls.Add(button4);
+            Controls.Add(button3);
+            Controls.Add(button2);
+            Controls.Add(label2);
             Controls.Add(button1);
             Controls.Add(label1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "Home";
             Text = "Home";
-            toolStrip1.ResumeLayout(false);
-            toolStrip1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -93,7 +116,9 @@
 
         private Label label1;
         private Button button1;
-        private ToolStrip toolStrip1;
-        private ToolStripLabel toolStripLabel1;
+        private Label label2;
+        private Button button2;
+        private Button button3;
+        private Button button4;
     }
 }

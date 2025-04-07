@@ -113,6 +113,7 @@
             Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(label1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "Registration";
             Text = "Registration";
             Load += Registration_Load;
