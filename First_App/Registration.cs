@@ -58,10 +58,12 @@ namespace First_App
                         }
                     }
 
-                    using (SqlCommand insertCmd = new SqlCommand("INSERT INTO Users (name, password) VALUES (@name, @password)", cn))
+                    using (SqlCommand insertCmd = new SqlCommand("INSERT INTO Users (name, password, age, email) VALUES (@name, @password, @age, @email)", cn))
                     {
                         insertCmd.Parameters.AddWithValue("@name", textName.Text);
                         insertCmd.Parameters.AddWithValue("@password", textPassword.Text);
+                        insertCmd.Parameters.AddWithValue("@age", textAge.Text);
+                        insertCmd.Parameters.AddWithValue("@email", textEmail.Text);
                         insertCmd.ExecuteNonQuery();
 
                         MessageBox.Show("Your account has been created. Please login now.", "Success",
