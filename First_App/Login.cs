@@ -32,7 +32,16 @@ namespace First_App
 
                     int result = (int)cmd.ExecuteScalar();
 
-                    if (result > 0)
+
+
+                    if (name == "Admin" && password == "Admin123")
+                    {
+                        string loggedInName = textName.Text;
+                        this.Hide();
+                        Admin admin = new Admin(loggedInName);
+                        admin.ShowDialog();
+                    }
+                    else if (result > 0)
                     {
                         MessageBox.Show("Login Successful", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         string loggedInName = textName.Text;
